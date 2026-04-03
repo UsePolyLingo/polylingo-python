@@ -1,8 +1,8 @@
 # polylingo (Python)
 
-Official Python SDK for the [PolyLingo](https://usepolylingo.com) translation API.
+Python client for the [PolyLingo](https://usepolylingo.com) translation API.
 
-**Requirements:** Python 3.9+
+Requires Python 3.9+.
 
 ## Install
 
@@ -10,7 +10,7 @@ Official Python SDK for the [PolyLingo](https://usepolylingo.com) translation AP
 pip install polylingo
 ```
 
-## Sync usage
+## Sync client
 
 ```python
 import os
@@ -27,14 +27,12 @@ print(result["translations"]["es"])
 client.close()
 ```
 
-Context manager:
-
 ```python
 with polylingo.PolyLingo(api_key="...") as client:
     print(client.languages())
 ```
 
-## Async usage
+## Async client
 
 ```python
 import polylingo
@@ -45,29 +43,30 @@ async with polylingo.AsyncPolyLingo(api_key="...") as client:
 
 ## API
 
-- `health()` / `await health()`
-- `languages()`
-- `translate(content=..., targets=..., format=..., source=..., model=...)`
-- `batch(items=..., targets=..., source=..., model=...)`
-- `usage()`
-- `jobs.create(...)` — returns 202 payload
-- `jobs.get(job_id)`
-- `jobs.translate(..., poll_interval=5.0, timeout=1200.0, on_progress=...)`
+Same names on `PolyLingo` and `AsyncPolyLingo` (async methods are awaited).
+
+| Area | Notes |
+|------|--------|
+| `health()` | `GET /health` |
+| `languages()` | `GET /languages` |
+| `translate(...)` | `POST /translate` |
+| `batch(...)` | `POST /translate/batch` |
+| `usage()` | `GET /usage` |
+| `jobs.create(...)` | `POST /jobs` (202 body) |
+| `jobs.get(job_id)` | `GET /jobs/:id` |
+| `jobs.translate(...)` | Submit and poll (`poll_interval`, `timeout`, `on_progress`) |
 
 ## Exceptions
 
-- `PolyLingoError` — base (`status`, `error`, `args[0]` message)
-- `AuthError` — 401
-- `RateLimitError` — 429 (`retry_after`)
-- `JobFailedError` — failed job (`job_id`)
+`PolyLingoError` (`status`, `error`, message string). `AuthError` (401), `RateLimitError` (429, `retry_after`), `JobFailedError` (`job_id`).
 
-## Docs
+## Documentation
 
-[Python SDK reference](https://usepolylingo.com/en/docs/sdk/python) (when deployed).
+[Python SDK on usepolylingo.com](https://usepolylingo.com/en/docs/sdk/python)
 
 ## Repository
 
-[UsePolyLingo/polylingo-python](https://github.com/UsePolyLingo/polylingo-python)
+[github.com/UsePolyLingo/polylingo-python](https://github.com/UsePolyLingo/polylingo-python)
 
 ## License
 
