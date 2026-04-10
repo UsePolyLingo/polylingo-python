@@ -18,7 +18,7 @@ import polylingo
 
 client = polylingo.PolyLingo(
     api_key=os.environ["POLYLINGO_API_KEY"],
-    # base_url="https://api.polylingo.io/v1",
+    # base_url="https://api.usepolylingo.com/v1",
     # timeout=120.0,
 )
 

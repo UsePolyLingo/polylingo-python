@@ -13,7 +13,7 @@ from polylingo.resources._languages import languages
 from polylingo.resources._translate import translate
 from polylingo.resources._usage import usage
 
-DEFAULT_BASE_URL = "https://api.polylingo.io/v1"
+DEFAULT_BASE_URL = "https://api.usepolylingo.com/v1"
 
 ExpectStatus = Union[int, tuple[int, ...]]
 
